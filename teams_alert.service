@@ -9,8 +9,8 @@ ExecStart=/root/teams_alert.sh
 Restart=always
 User=root
 WorkingDirectory=/root
-StandardOutput=append:/var/log/teams_alert.log
-StandardError=append:/var/log/teams_alert_error.log
+StandardOutput=append:/var/log/teams_service_alert.log
+StandardError=append:/var/log/teams_service_alert_error.log
 
 [Install]
 WantedBy=multi-user.target
