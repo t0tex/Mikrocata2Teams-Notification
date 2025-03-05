@@ -14,6 +14,10 @@ Before running the script, make sure you have the following tool installed:
 
     sudo apt install jq
 
+    Mikrocata2SELKS:
+        This script works in conjunction with the Mikrocata2SELKS repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
+        Be sure to have Mikrocata2SELKS set up before running this script.
+
 Features
 
     ✅ Automated Monitoring: Automatically tracks logs for newly blocked IP addresses.
@@ -60,13 +64,14 @@ How It Works
     When a new blocked IP is detected, it extracts key details such as the IP address, rule signature, and timestamp.
     These details are formatted into a JSON message that is sent to the Microsoft Teams Webhook URL.
     To prevent duplicate notifications, the script logs all sent alerts.
+
 Expected Output
 
 When the script detects a new blocked IP, a notification will be sent to your Microsoft Teams channel in the following format:
 
-    🚨 **New IP Blocked** 🚨
+🚨 **New IP Blocked** 🚨
 
-    [Mikrocata] new ip added: [1:5000002] ETN AGGRESSIVE IPs Group 2 ::: Port: 443/TCP ::: timestamp: 5 Mar 2025 19:31:53.925105
+[Mikrocata] new ip added: [1:5000002] ETN AGGRESSIVE IPs Group 2 ::: Port: 443/TCP ::: timestamp: 5 Mar 2025 19:31:53.925105
 
 The message will include the rule signature and timestamp, formatted for easy tracking.
 Logs & Debugging
