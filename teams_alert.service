@@ -1,0 +1,16 @@
+systemctl cat teams_alert.service
+# /etc/systemd/system/teams_alert.service
+[Unit]
+Description=Teams Alert for IDS Blocks
+After=network.target
+
+[Service]
+ExecStart=/root/teams_alert.sh
+Restart=always
+User=root
+WorkingDirectory=/root
+StandardOutput=append:/var/log/teams_alert.log
+StandardError=append:/var/log/teams_alert_error.log
+
+[Install]
+WantedBy=multi-user.target
