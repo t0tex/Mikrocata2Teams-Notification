@@ -27,15 +27,15 @@ journalctl -u mikrocataTZSP0.service -f | while read -r line; do
         # Log the message to prevent duplicates
         echo "$IP_INFO" >> "$LOG_FILE"
 
-        # Log the successful alert to a file
-        echo "$IP_INFO" | tee -a /var/log/teams_alert.log
-
-        # Format message correctly
+        # Log the information that will be sent to Teams
         JSON_PAYLOAD=$(jq -n \
             --arg text "🚨 **New IP Blocked** 🚨\n\n$IP_INFO" \
             '{text: $text | gsub("\\\\n"; "\n")}')
 
-        # Send to Teams and log any errors
+        # Log the exact payload that will be sent to Teams into the log file
+        echo "Sending the following message to Teams: $JSON_PAYLOAD" | tee -a /var/log/teams_alert.log
+
+        # Send to Teams
         curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$WEBHOOK_URL" 2>> /var/log/teams_alert_error.log
     fi
 done
