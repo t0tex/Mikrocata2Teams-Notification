@@ -2,7 +2,7 @@ Mikrocata2Teams-Notification
 
 This script (teams_alert.sh) is designed to monitor the mikrocataTZSP0.service for real-time alerts and send notifications to a Microsoft Teams channel via webhooks. The script checks logs continuously for newly blocked IP addresses, formats the data into structured alerts, and sends them directly to your Microsoft Teams channel for easy tracking and review.
 
-This script works in conjunction with the Mikrocata2SELKS repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
+This script works in conjunction with the [Mikrocata2SELKS](https://github.com/angolo40/mikrocata2selks) repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
 Dependencies
 
 Before running the script, make sure you have the following tool installed:
