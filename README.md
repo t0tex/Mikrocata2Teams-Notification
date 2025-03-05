@@ -69,9 +69,9 @@ Expected Output
 
 When the script detects a new blocked IP, a notification will be sent to your Microsoft Teams channel in the following format:
 
-🚨 **New IP Blocked** 🚨
+    🚨 **New IP Blocked** 🚨
 
-[Mikrocata] new ip added: [1:5000002] ETN AGGRESSIVE IPs Group 2 ::: Port: 443/TCP ::: timestamp: 5 Mar 2025 19:31:53.925105
+    [Mikrocata] new ip added: [1:5000002] ETN AGGRESSIVE IPs Group 2 ::: Port: 443/TCP ::: timestamp: 5 Mar 2025 19:31:53.925105
 
 The message will include the rule signature and timestamp, formatted for easy tracking.
 Logs & Debugging
