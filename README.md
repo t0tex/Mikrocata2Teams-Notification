@@ -15,7 +15,7 @@ Before running the script, make sure you have the following tool installed:
     sudo apt install jq
 
     Mikrocata2SELKS:
-        This script works in conjunction with the Mikrocata2SELKS repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
+        This script works in conjunction with the [Mikrocata2SELKS](https://github.com/angolo40/mikrocata2selks) repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
         Be sure to have Mikrocata2SELKS set up before running this script.
 
 Features
