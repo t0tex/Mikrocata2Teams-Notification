@@ -1,5 +1,3 @@
-systemctl cat teams_alert.service
-# /etc/systemd/system/teams_alert.service
 [Unit]
 Description=Teams Alert for IDS Blocks
 After=network.target
