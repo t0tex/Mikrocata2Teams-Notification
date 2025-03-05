@@ -26,7 +26,7 @@ Installation
 
     Clone the repository:
 
-git clonegit clone https://github.com/t0tex/Mikrocata2Teams-Notification.git
+git clone git clone https://github.com/t0tex/Mikrocata2Teams-Notification.git
 cd Mikrocata2Teams-Notification
 
     Edit the script and replace WEBHOOK_URL with your Teams webhook URL:
