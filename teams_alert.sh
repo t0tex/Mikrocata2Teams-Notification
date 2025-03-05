@@ -8,7 +8,7 @@ LOCK_FILE="/tmp/teams_alert.lock"
 
 # Check if script is already running
 if pgrep -f "teams_alert.sh" | grep -v $$; then
-    echo "Script is already running. Exiting."
+    echo "Script is already running. Exiting." | tee -a /var/log/teams_alert_error.log
     exit 1
 fi
 
@@ -27,12 +27,15 @@ journalctl -u mikrocataTZSP0.service -f | while read -r line; do
         # Log the message to prevent duplicates
         echo "$IP_INFO" >> "$LOG_FILE"
 
+        # Log the successful alert to a file
+        echo "$IP_INFO" | tee -a /var/log/teams_alert.log
+
         # Format message correctly
         JSON_PAYLOAD=$(jq -n \
             --arg text "🚨 **New IP Blocked** 🚨\n\n$IP_INFO" \
             '{text: $text | gsub("\\\\n"; "\n")}')
 
-        # Send to Teams
-        curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$WEBHOOK_URL"
+        # Send to Teams and log any errors
+        curl -H "Content-Type: application/json" -d "$JSON_PAYLOAD" "$WEBHOOK_URL" 2>> /var/log/teams_alert_error.log
     fi
 done
