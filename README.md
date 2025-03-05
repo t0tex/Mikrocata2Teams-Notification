@@ -28,9 +28,22 @@ chmod +x teams_alert.sh
 
     (Optional) Set up a systemd service for continuous monitoring:
 
+(Optional) Set up a systemd service for continuous monitoring:
+
+    Copy the service file to the systemd directory:
+
 sudo cp teams_alert.service /etc/systemd/system/
+
+Reload the systemd daemon to recognize the new service:
+
 sudo systemctl daemon-reload
+
+Enable the service to start on boot:
+
 sudo systemctl enable teams_alert.service
+
+Start the service:
+
 sudo systemctl start teams_alert.service
 
 How It Works
