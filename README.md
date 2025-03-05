@@ -3,6 +3,17 @@ Mikrocata2Teams-Notification
 This script (teams_alert.sh) is designed to monitor the mikrocataTZSP0.service for real-time alerts and send notifications to a Microsoft Teams channel via webhooks. The script checks logs continuously for newly blocked IP addresses, formats the data into structured alerts, and sends them directly to your Microsoft Teams channel for easy tracking and review.
 
 This script works in conjunction with the Mikrocata2SELKS repository, which integrates Mikrotik IDS logs with SELKS for analysis and alerting.
+Dependencies
+
+Before running the script, make sure you have the following tool installed:
+
+    jq (for JSON processing):
+        jq is used to format the message that will be sent to the Microsoft Teams webhook.
+
+    Installation:
+
+    sudo apt install jq
+
 Features
 
     ✅ Automated Monitoring: Automatically tracks logs for newly blocked IP addresses.
@@ -27,22 +38,19 @@ nano teams_alert.sh
 chmod +x teams_alert.sh
 
     (Optional) Set up a systemd service for continuous monitoring:
+        Copy the service file to the systemd directory:
 
-(Optional) Set up a systemd service for continuous monitoring:
+sudo cp teams_alert.service /etc/systemd/system/
 
-    Copy the service file to the systemd directory:
+    Reload the systemd daemon to recognize the new service:
 
-    sudo cp teams_alert.service /etc/systemd/system/
+sudo systemctl daemon-reload
 
-Reload the systemd daemon to recognize the new service:
+    Enable the service to start on boot:
 
-    sudo systemctl daemon-reload
+sudo systemctl enable teams_alert.service
 
-Enable the service to start on boot:
-
-    sudo systemctl enable teams_alert.service
-
-Start the service:
+    Start the service:
 
     sudo systemctl start teams_alert.service
 
