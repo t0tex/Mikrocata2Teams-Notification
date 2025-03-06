@@ -36,7 +36,7 @@ journalctl -u mikrocataTZSP0.service -f | while read -r line; do
         IP=$(echo "$line" | grep -oP '(?<=new ip added: )\S+')
         RULE_INFO=$(echo "$line" | grep -oP '\[\d+:\d+\] .*? :::')
         PORT_INFO=$(echo "$line" | grep -oP 'Port: \S+')
-        TIMESTAMP=$(echo "$line" | grep -oP 'timestamp: \S+ \S+')
+        TIMESTAMP=$(echo "$line" | grep -oP 'timestamp: \d{1,2} \w+ \d{4} \d{2}:\d{2}:\d{2}')
 
         if [[ -z "$IP" || -z "$RULE_INFO" || -z "$PORT_INFO" || -z "$TIMESTAMP" ]]; then
             echo "Failed to extract all required information from log: $line" | tee -a /var/log/teams_alert_error.log
