@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Microsoft Teams Webhook URL (Replace with your actual webhook)
+# Microsoft Teams Webhook URL
 WEBHOOK_URL="https://your-teams-webhook-url"
 
 # Lock file to prevent multiple instances
@@ -33,23 +33,36 @@ echo "Lock file created. Script will now monitor logs..."
 journalctl -u mikrocataTZSP0.service -f | while read -r line; do
     if echo "$line" | grep -q "new ip added"; then
         # Extract relevant details
-        IP_INFO=$(echo "$line" | grep -oP '\[Mikrocata\] new ip added:.*')
+        IP=$(echo "$line" | grep -oP '(?<=new ip added: )\S+')
+        RULE_INFO=$(echo "$line" | grep -oP '\[\d+:\d+\] .*? :::')
+        PORT_INFO=$(echo "$line" | grep -oP 'Port: \S+')
+        TIMESTAMP=$(echo "$line" | grep -oP 'timestamp: \S+ \S+')
+
+        if [[ -z "$IP" || -z "$RULE_INFO" || -z "$PORT_INFO" || -z "$TIMESTAMP" ]]; then
+            echo "Failed to extract all required information from log: $line" | tee -a /var/log/teams_alert_error.log
+            continue
+        fi
+
+        # Construct lookup links
+        SHODAN_URL="https://www.shodan.io/host/$IP"
+        ABUSEIPDB_URL="https://www.abuseipdb.com/check/$IP"
+        GREYNOISE_URL="https://viz.greynoise.io/ip/$IP"
 
         # Avoid duplicate messages
         LOG_FILE="/var/log/teams_alert_sent.log"
-        if grep -q "$IP_INFO" "$LOG_FILE"; then
+        if grep -q "$IP" "$LOG_FILE"; then
             continue  # Skip duplicate messages
         fi
 
         # Log the message to prevent duplicates
-        echo "$IP_INFO" >> "$LOG_FILE"
+        echo "$IP" >> "$LOG_FILE"
 
-        # Log the information that will be sent to Teams
-        JSON_PAYLOAD=$(jq -n \
-            --arg text "🚨 **New IP Blocked** 🚨\n\n$IP_INFO" \
-            '{text: $text | gsub("\\\\n"; "\n")}')
+        # Format the Teams notification
+JSON_PAYLOAD=$(jq -n \
+ --arg text "🚨 **New IP Blocked** 🚨\n\n🔹 **Blocked IP:** $IP\n\n🔹 **Rule:** $RULE_INFO\n\n🔹 **Port:** $PORT_INFO\n\n🔹 **Timestamp:** $TIMESTAMP\n\n🔹 [🔍 Shodan Lookup]($SHODAN_URL)\n🔹 [🚨 AbuseIPDB Check]($ABUSEIPDB_URL)\n🔹 [🟣 GreyNoise Lookup]($GREYNOISE_URL)" \
+ '{text: $text | gsub("\\\\n"; "<br>")}')
 
-        # Log the exact payload that will be sent to Teams into the log file
+        # Log the exact payload that will be sent to Teams
         echo "Sending the following message to Teams: $JSON_PAYLOAD" | tee -a /var/log/teams_alert.log
 
         # Send to Teams
