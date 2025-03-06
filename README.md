@@ -33,7 +33,7 @@ This modification ensures that the actual blocked IP address is captured and dis
 > **🔹 Blocked IP:** `192.168.0.0`  
 > **🔹 Rule:** `[1:2610608] TGI HUNT Unencrypted HTTP Authorization Header Outbound` :::  
 > **🔹 Port:** `51987/TCP`  
-> **🔹 Timestamp:** `6 Mar`  
+> **🔹 Timestamp:** `6 Mar 2025 14:28:29`  
 >  
 > 🔍 **Lookup Options:**  
 > [🔹 Shodan Lookup](https://www.shodan.io/host/192.168.0.0)  
@@ -117,7 +117,7 @@ Before running the script, make sure you have the following tool installed:
 > **🔹 Blocked IP:** `192.168.0.0`  
 > **🔹 Rule:** `[1:2610608] TGI HUNT Unencrypted HTTP Authorization Header Outbound` :::  
 > **🔹 Port:** `51987/TCP`  
-> **🔹 Timestamp:** `6 Mar`  
+> **🔹 Timestamp:** `6 Mar 2025 14:28:29`  
 >  
 > 🔍 **Lookup Options:**  
 > [🔹 Shodan Lookup](https://www.shodan.io/host/192.168.0.0)  
