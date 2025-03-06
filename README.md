@@ -30,15 +30,15 @@ This modification ensures that the actual blocked IP address is captured and dis
 ### Example Teams Notification After Modification:
 
 > 🚨 **New IP Blocked** 🚨  
-> **🔹 Blocked IP:** `52.242.79.71`  
+> **🔹 Blocked IP:** `192.168.0.0`  
 > **🔹 Rule:** `[1:2610608] TGI HUNT Unencrypted HTTP Authorization Header Outbound` :::  
 > **🔹 Port:** `51987/TCP`  
 > **🔹 Timestamp:** `6 Mar`  
 >  
 > 🔍 **Lookup Options:**  
-> [🔹 Shodan Lookup](https://www.shodan.io/host/52.242.79.71)  
-> [🔹 AbuseIPDB Check](https://www.abuseipdb.com/check/52.242.79.71)  
-> [🔹 GreyNoise Lookup](https://viz.greynoise.io/ip/52.242.79.71)
+> [🔹 Shodan Lookup](https://www.shodan.io/host/192.168.0.0)  
+> [🔹 AbuseIPDB Check](https://www.abuseipdb.com/check/192.168.0.0)  
+> [🔹 GreyNoise Lookup](https://viz.greynoise.io/ip/192.168.0.0)
 
 ### Applying the Change:
 
@@ -114,15 +114,15 @@ Before running the script, make sure you have the following tool installed:
 ### 📬 Expected Output
 
 > 🚨 **New IP Blocked** 🚨  
-> **🔹 Blocked IP:** `52.242.79.71`  
+> **🔹 Blocked IP:** `192.168.0.0`  
 > **🔹 Rule:** `[1:2610608] TGI HUNT Unencrypted HTTP Authorization Header Outbound` :::  
 > **🔹 Port:** `51987/TCP`  
 > **🔹 Timestamp:** `6 Mar`  
 >  
 > 🔍 **Lookup Options:**  
-> [🔹 Shodan Lookup](https://www.shodan.io/host/52.242.79.71)  
-> [🔹 AbuseIPDB Check](https://www.abuseipdb.com/check/52.242.79.71)  
-> [🔹 GreyNoise Lookup](https://viz.greynoise.io/ip/52.242.79.71)
+> [🔹 Shodan Lookup](https://www.shodan.io/host/192.168.0.0)  
+> [🔹 AbuseIPDB Check](https://www.abuseipdb.com/check/192.168.0.0)  
+> [🔹 GreyNoise Lookup](https://viz.greynoise.io/ip/192.168.0.0)
 
 ---
 
