@@ -12,7 +12,7 @@ In order for this script to work correctly, you need to modify the `mikrocata.py
 
 ### Required Change in `mikrocata.py`:
 
-Locate the `add_to_tik(alerts)` function and update the `print` statement as follows:
+Locate the `add_to_tik(alerts)` function in microkata.py and update the `print` statement as follows:
 
 #### Previous Code:
 ```python
