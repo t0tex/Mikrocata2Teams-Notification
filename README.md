@@ -1,4 +1,5 @@
 # Mikrocata2Teams-Notification
+
 ![Image](https://github.com/user-attachments/assets/cb262505-2b4c-4328-9261-be1de6b45b08)
 This script (`teams_alert.sh`) is designed to monitor the `mikrocataTZSP0.service` for real-time alerts and send notifications to a Microsoft Teams channel via webhooks. The script checks logs continuously for newly blocked IP addresses, formats the data into structured alerts, and sends them directly to your Microsoft Teams channel for easy tracking and review.
 
@@ -15,16 +16,19 @@ In order for this script to work correctly, you need to modify the `mikrocata.py
 Locate the `add_to_tik(alerts)` function in **microkata.py** and update the `print` statement as follows:
 
 #### Previous Code:
+
 ```python
 print(f"[Mikrocata] new ip added: {cmnt}")
 ```
 
 #### Updated Code:
+
 ```python
 print(f"[Mikrocata] new ip added: {wanted_ip} - {cmnt}")
 ```
 
 ### Why is This Necessary?
+
 This modification ensures that the actual blocked IP address is captured and displayed in the notification. This allows for easier verification and tracking of suspicious activity.
 
 ### Example Teams Notification After Modification:
