@@ -1,0 +1,30 @@
+name: Release
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+permissions: write-all
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 't0tex'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "lts/*"
+      - name: Install dependencies
+        run: npm install -g semantic-release @semantic-release/github @semantic-release/git @semantic-release/changelog
+      - name: Release
+        env:
+          GH_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_TOKEN }}
+        run: npx semantic-release
