@@ -12,7 +12,7 @@ echo "Checking if lock file exists..."
 if [ -e "$LOCK_FILE" ]; then
   # Check if the script is still running
   PID=$(cat "$LOCK_FILE")
-  if ps -p $PID >/dev/null; then
+  if ps -p "$PID" >/dev/null; then
     echo "Script is already running (PID $PID). Exiting." | tee -a /var/log/teams_alert_error.log
     exit 1
   else
@@ -25,7 +25,7 @@ fi
 echo $$ >"$LOCK_FILE"
 
 # Ensure the lock file is removed when the script exits
-trap "rm -f $LOCK_FILE" EXIT
+trap 'rm -f "$LOCK_FILE"' EXIT
 
 echo "Lock file created. Script will now monitor logs..."
 
